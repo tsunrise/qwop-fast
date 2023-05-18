@@ -1,5 +1,6 @@
 use pyo3::prelude::*;
 use core::f64::consts::PI;
+use rayon::prelude::*;
 /// Simulates a plan and returns the distance traveled.
 /// Adapted from: https://web.stanford.edu/class/cs168/qwop.py
 fn _sim(mut plan: [f64; 40]) -> f64{
@@ -186,9 +187,17 @@ fn sim(plan: [f64; 40]) -> PyResult<f64> {
     Ok(_sim(plan))
 }
 
+/// Simulates multiple plans in batches and returns the distances traveled.
+#[pyfunction]
+fn sim_batch(plans: Vec<[f64; 40]>) -> PyResult<Vec<f64>> {
+    let dists = plans.into_par_iter().map(|plan| _sim(plan)).collect::<Vec<_>>();
+    Ok(dists)
+}
+
 /// A Python module implemented in Rust.
 #[pymodule]
 fn qwop_fast(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(sim, m)?)?;
+    m.add_function(wrap_pyfunction!(sim_batch, m)?)?;
     Ok(())
 }
