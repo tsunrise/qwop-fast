@@ -4,6 +4,12 @@ Same API as `https://web.stanford.edu/class/cs168/qwop.py`, but much faster.
 
 ## Install
 
+```
+pip install qwop-fast
+```
+
+## Build From Source
+
 1. Install Rust: https://rustup.rs/
 
 2. Install Maturin: 
