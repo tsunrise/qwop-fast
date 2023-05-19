@@ -8,21 +8,7 @@ Same API as `https://web.stanford.edu/class/cs168/qwop.py`, but much faster.
 pip install qwop-fast
 ```
 
-## Build From Source
-
-1. Install Rust: https://rustup.rs/
-
-2. Install Maturin: 
-    ```
-    pip install maturin
-    ```
-
-3. Build and install the package:
-    ```
-    maturin develop --release
-    ```
-
-4. Use it:
+## Usage
 
 - You can just follow the API of `https://web.stanford.edu/class/cs168/qwop.py` and just replace `import qwop` with `import qwop_fast`.
 
@@ -41,3 +27,18 @@ pip install qwop-fast
     plan = np.random.uniform(-1, 1, (100, 40))
     qwop_fast.sim_batch(plan) # return a list of floats
     ```
+
+## Build From Source
+
+1. Install Rust: https://rustup.rs/
+
+2. Install Maturin: 
+    ```
+    pip install maturin
+    ```
+
+3. Build and install the package:
+    ```
+    maturin develop --release
+    ```
+
